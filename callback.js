@@ -538,9 +538,13 @@ app.controller('callbackCtrl', function () {
 	this.sended = false;
 	this.order = {};
 	this.addOrder = function () {
-		console.log(this.order);
-		this.sended = true;
-		this.order = {};
+        // ajax to handler
+        var ajaxCallback = function() {
+            console.log(this.order);
+            this.sended = true;
+            this.order = {};
+        };
+        $.post('/callback.php', this.order, ajaxCallback.apply(this));
 	}
 });
 var page = $('.page'),

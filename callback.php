@@ -3,6 +3,7 @@
 // load and parse settigns
 $settings = parse_ini_file("settings.ini");
 $emails = explode(',', $settings['emails']);
+$sender = $settings['sender'];
 
 // handle POST request
 $tel = $_POST['tel'];
@@ -14,6 +15,9 @@ fclose($fp);
 
 // send notification mail
 foreach ($emails as $email) {
-    mail(trim($email), "Запрос звонка с site.ru на $tel", "Запрос звонка с site.ru на $tel");
+    mail(trim($email), "Запрос звонка с site.ru на $tel", "Запрос звонка с site.ru на $tel",
+	"From: $sender\r\n"
+	."Reply-To: $sender\r\n"
+	."X-Mailer: PHP/" . phpversion());
 }
 

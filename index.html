@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru" ng-app="callbackApp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<title>Callback Widget</title>
+	<link rel="stylesheet" href="callback.css">
+	<link rel="shortcut icon" href="img/favicon.png">
+	
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js" defer></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+	<script src="callback.js" defer></script>
+	
+	<noscript><style>body{margin-top:50px}.g-errors__nojs{display: block}</style></noscript>
+	<!--[if lte IE 9]><style>.g-errors__old{display: block}</style><![endif]-->
+</head>
+<body class="page">
+	<div class="g-section__content">
+		<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptates doloremque iste adipisci, illo aut fugiat hic! Magni molestias numquam officia eaque optio deleniti quia perspiciatis. Praesentium perspiciatis excepturi, quae.</div>
+		<div>Blanditiis accusamus quidem, ab sapiente repellat quae cupiditate, obcaecati at sit aperiam sed, eaque libero? Cupiditate est ad, magni optio, praesentium non rerum vel odio quo hic molestiae ipsam expedita.</div>
+		<div>Animi aut quae deserunt ea. Vel ea possimus explicabo, unde commodi, consequatur repellat, velit incidunt voluptatum, natus temporibus perferendis laborum maxime eius neque. Nemo nulla amet rerum hic nam. Impedit.</div>
+		<div>Error perspiciatis nemo nobis quidem, commodi quisquam ipsa qui, ipsum, a dolore rem distinctio labore ipsam saepe aut totam rerum excepturi libero! Voluptatem quis rem esse vel blanditiis quibusdam repellendus.</div>
+	</div>
+	<a href="#popup/callback" style="bottom: 50px; right: 50px;" class="callback__widget active">
+		<div class="callback__widget__circle"></div>
+		<div class="callback__widget__circle-fill"></div>
+		<div class="callback__widget__img"></div>
+	</a>
+	<div class="popup" data-popup="callback">
+		<div class="popup__overlay"></div>
+		<div class="popup__content">
+			<div class="popup__close"><img src="img/close.png" alt=""></div>
+			<div class="callback" ng-controller="callbackCtrl as callback">
+				<div class="callback__popup">
+					<div class="callback__title" ng-hide="callback.sended">Давайте перезвоним Вам за 29 секунд?</div>
+					<div class="callback__title" ng-show="false">К сожалению, мы не в офисе. <br>Хотите мы позвоним Вам в рабочее время <br>через 10 часов и 18 минут?</div>
+					<div class="callback__title callback__title_arrow_none" ng-show="callback.sended">Спасибо! <br>Мы обязательно свяжемся с Вами в рабочее время</div>
+					<div class="callback__inline" ng-hide="callback.sended">
+						<form name="callbackForm" class="callback__form" ng-submit="callbackForm.$valid && callback.addOrder()" novalidate>
+							<input type="tel" name="tel" class="callback__input" ng-model="callback.order.tel" ui-mask="+7 (999) 999-99-99" required>
+							<button class="callback__button" ng-class="{ passive : !callbackForm.$valid }">Звоните мне!</button>
+						</form>
+						<div class="callback__timer">00:28,99</div>
+					</div>
+					<div class="callback__info" ng-hide="callback.sended">
+						<div class="callback__info__text">Свободных менеджеров:<span class="callback__info__number">2</span></div>
+						<div class="callback__info__text">На линии сейчас клиентов:<span class="callback__info__number">1</span></div>
+						<div class="callback__info__text">Разговоров сегодня было:<span class="callback__info__number">5</span></div>
+					</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+</html>
+<!-- Localized -->

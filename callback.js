@@ -543,9 +543,6 @@ app.controller('callbackCtrl', function () {
             console.log(this.order);
             this.sended = true;
             this.order = {};
-			
-			var arr = str.split([separator][, limit]);
-
         };
         $.post(window.location.href.split('#')[0]+'callback.php', this.order, ajaxCallback.apply(this));
 	}
